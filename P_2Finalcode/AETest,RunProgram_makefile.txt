@@ -1,0 +1,164 @@
+// Target of running Program
+run: runProgram.class
+    java runProgram
+//-----------------------------------------------------------------------------------------
+
+// runProgram
+runProgram.class: runProgram.java
+    javac runProgram.java
+//-----------------------------------------------------------------------------------------
+
+// run all tests
+runTests: runAlgorithmEngineerTests runDataWranglerTests runFrontEndDeveloperTests runBackEndDeveloperTests
+	make runAlgorithmEngineerTests
+	make runDataWranglerTests
+	make runFrontEndDeveloperTests
+	make runBackEndDeveloperTests
+//-----------------------------------------------------------------------------------------	
+// target of Each RoleTests
+// target -> AE
+runAlgorithmEngineerTests: AlgorithmEngineerTests.class junit-platform-console-standalone-1.9.2.jar MovieSearchApp.class MovieSearch.class MovieReader.class Movie.class MovieRedBlackTree.class RBTList.class RedBlackTree.class TextUITester.class
+    java -jar junit-platform-console-standalone-1.9.2.jar -cp . -c AlgorithmEngineerTests
+// target -> DW
+runDataWranglerTests: DataWranglerTests.class junit-platform-console-standalone-1.9.2.jar  MovieSearchApp.class MovieSearch.class MovieReader.class Movie.class MovieRedBlackTree.class RBTList.class RedBlackTree.class TextUITester.class
+    java -jar junit-platform-console-standalone-1.9.2.jar -cp . -c DataWranglerTests
+// target -> FD
+runFrontEndDeveloperTests: FDTests.class
+    java -jar junit5.jar -cp . --select-class=FDTests
+// target-> BD
+runBackEndDeveloperTests: BackEndDeveloperTests.class
+	java -jar junit5.jar -cp . --select-class= BackendDeveloperTests
+//-----------------------------------------------------------------------------------------
+//compile each roleTest javafile
+// AlgorithmEngineerTests
+AlgorithmEngineerTests.class: AlgorithmEngineerTests.java
+	javac -cp .:junit-platform-console-standalone-1.9.2.jar AlgorithmEngineerTests.java
+
+// DataWranglerTests
+DataWranglerTests.class: DataWranglerTests.java
+	javac -cp .:junit-platform-console-standalone-1.9.2.jar DataWranglerTests.java
+
+// FrontEndDevleoperTests
+FDTests.class: FDTests.java  MovieSearchApp.class MovieSearch.class MovieReader.class Movie.class MovieRedBlackTree.class RBTList.class RedBlackTree.class TextUITester.class
+	javac -p .:junit5.jar FDTests.java
+
+// BackEndDeveloperTests
+BackendDeveloperTests.class: BackendDeveloperTests.java MovieSearchApp.class MovieSearch.class MovieReader.class Movie.class MovieRedBlackTree.class RBTList.class RedBlackTree.class TextUITester.class
+	javac -p .:junit5.jar BackendDeveloperTests.java
+	
+//-----------------------------------------------------------------------------------------
+// FD class with Interface
+MovieSearchApp.class: MovieSearchApp.java MovieSearchAppInterface.class
+	javac MovieSearchApp.java
+
+MovieSearchAppInterface.class: MovieSearchAppInterface.java
+	javac MovieSearchAppInterface.java
+//-----------------------------------------------------------------------------------------
+// BD class with Interface
+MovieSearch.class: MovieSearch.java MovieSearchInterface.class
+	javac MovieSearch.java
+
+MovieSearchInterface.class: MovieSearchInterface.java
+	javac MovieSearchInterface.java
+//-----------------------------------------------------------------------------------------
+// DW class with Interface
+MovieReader.class: MovieReader.java MovieReaderInterface.class
+	javac MovieReader.java
+
+MovieReaderInterface.class: MovieReaderInterface.java
+	javac MovieReaderInterface.java
+
+Movie.class: Movie.java MovieInterface.class
+	javac Movie.java
+
+MovieInterface.class: MovieInterface.java
+	javac MovieInterface.java
+//-----------------------------------------------------------------------------------------
+// AE class with Interface
+MovieRedBlackTree.class: MovieRedBlackTree.java MovieRedBlackTreeInterface.class
+	javac MovieRedBlackTree.java
+
+MovieRedBlackTreeInterface.class: MovieRedBlackTreeInterface.java
+	javac MovieRedBlackTreeInterface.java
+
+RBTList.class: RBTList.java RBTListInterface.class
+	javac RBTList.java
+
+RBTListInterface.class: RBTListInterface.java
+	javac RBTListInterface.java
+
+RedBlackTree.class: RedBlackTree.java RedBlackTreeInterface.class
+	javac RedBlackTree.java
+
+RedBlackTreeInterface.class: RedBlackTreeInterface.java SortedCollectionInterface.class
+	javac RedBlackTreeInterface.java
+
+SortedCollectionInterface.class: SortedCollectionInterface.java
+	javac SortedCollectionInterface.java
+//-----------------------------------------------------------------------------------------
+// TextUITester class with interface
+TextUITester.class: TextUITester.java
+    javac TextUITester.java
+//-----------------------------------------------------------------------------------------
+// placeholder for AE
+MovieAE.class: MovieAE.java
+	javac MovieAE.java
+
+MovieInterfaceAE.class: MovieInterfaceAE.java
+	javac MovieInterfaceAE.java
+
+MovieRedBlackTreeAE.class: MovieRedBlackTreeAE.java
+	javac MovieRedBlackTreeAE.java
+
+MovieRedBlackTreeInterfaceAE.class: MovieRedBlackTreeInterfaceAE.java
+	javac MovieRedBlackTreeInterfaceAE.java
+
+RBTListAE.class: RBTListAE.java
+	javac RBTListAE.java
+
+RBTListInterfaceAE.class: RBTListInterfaceAE.java
+	javac RBTListInterfaceAE.java
+
+RedBlackTreeAE.class: RedBlackTreeAE.java
+	javac RedBlackTreeAE.java
+
+RedBlackTreeInterfaceAE.class: RedBlackTreeInterfaceAE.java
+	javac RedBlackTreeInterfaceAE.java
+
+SortedCollectionInterfaceAE.class: SortedCollectionInterfaceAE.java
+	javac SortedCollectionInterfaceAE.java
+
+// placeholder for FrontEndDevleoper
+BackendFD.class: BackendFD.java 
+	javac BackendFD.java
+
+BackendInterfaceFD.class: BackendInterfaceFD.java
+	javac BackendInterfaceFD.java
+
+MovieFD.class: MovieFD.java
+	javac MovieFD.java
+
+MovieInterfaceFD.class: MovieInterfaceFD.java
+	javac MovieInterfaceFD.java
+
+MovieReaderFD.class: MovieReaderFD.java
+	javac MovieReaderFD.java
+
+MovieReaderInterfaceFD.class: MovieReaderInterfaceFD.java
+	javac MovieReaderInterfaceFD.java
+
+MovieRedBlackTreeInterfaceFD.class: MovieRedBlackTreeInterfaceFD.java
+	javac MovieRedBlackTreeInterfaceFD.java
+
+MovieSearchAppFD.class: MovieSearchAppFD.java
+	javac MovieSearchAppFd.java
+
+MovieSearchAppInterfaceFD.class: MovieSearchAppInterfaceFD.java
+	javac  MovieSearchAppInterfaceFD.java
+//-----------------------------------------------------------------------------------------
+
+
+
+
+clean:
+	rm *.class
